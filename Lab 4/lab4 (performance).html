@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saim's Shop</title>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="lab4 (performance).css" />
+</head>
+<body>
+
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="shop">
+      <h2>Saim's Shop</h2>
+    </div>
+
+
+    <a href="#">Home</a>
+    <a href="#account">Account</a>
+
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-link">Items <i class="fa-solid fa-caret-down"></i></a>
+      <div class="dropdown-content">
+        <a href="#">Fruits</a>
+        <a href="#">Vegetables</a>
+        <a href="#">Dairy</a>
+      </div>
+    </div>
+
+
+    <div class="dropdown">
+      <a href="#" class="dropdown-link">Offers <i class="fa-solid fa-caret-down"></i></a>
+      <div class="dropdown-content">
+        <a href="#">Buy 1 Get 1</a>
+        <a href="#">20% Discount</a>
+        <a href="#">Flash Sale</a>
+      </div>
+    </div>
+
+
+    <div class="src-var">
+      <input type="text" placeholder="Type your item" />
+      <button>Search</button>
+    </div>
+
+
+    <i class="fa-solid fa-cart-shopping"><sub>0</sub></i>
+  </div>
+
+
+  <!-- Banner Section -->
+  <div class="banner">
+    <div class="banner-image">
+      <img src="https://media.istockphoto.com/id/512907694/photo/collection-vegetables.jpg?s=612x612&w=0&k=20&c=LGPsT8tp72qkDNwRbA6kr75w1JgzoNl8uklz4B5BxJs=" alt="Fresh Banner" />
+    </div>
+    <div class="banner-content">
+      <h1>Welcome to the Organic Way of Life</h1>
+      <p>Discover the goodness of fresh, chemical-free fruits grown with care. Eat better. Live healthier. Start your journey here.</p>
+      <button onclick="document.querySelector('.cart-container').scrollIntoView({ behavior: 'smooth' });">Order Now</button>
+    </div>
+  </div>
+
+
+  <!-- Food Cart Section -->
+  <div class="cart-container">
+    <div class="cart-item">
+      <img src="https://www.dole.com/sites/default/files/styles/1024w768h-80/public/media/2025-01/banana-cavendish_0.png" alt="Banana" />
+      <h3>Product One</h3>
+      <div class="price-section"></div>
+    </div>
+
+
+    <div class="cart-item">
+      <img src="https://www.collinsdictionary.com/images/full/strawberry_227472010.jpg" alt="Strawberry" />
+      <h3>Product Two</h3>
+      <div class="price-section"></div>
+    </div>
+
+
+    <div class="cart-item">
+      <img src="https://cdn.mos.cms.futurecdn.net/38Moe9n3b72uVEf2Ti7KmV-1200-80.jpg" alt="Apple" />
+      <h3>Product Three</h3>
+      <div class="price-section"></div>
+    </div>
+
+
+    <div class="cart-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhTn9mIiFqW_tqIhD1fi5nLBV--vF1fGLrEQ&s" alt="Orange" />
+      <h3>Product Four</h3>
+      <div class="price-section"></div>
+    </div>
+  </div>
+
+
+  <footer>
+    @All Right Reserved.
+  </footer>      
+
+
+  <!-- JS Script -->  
+  <script>
+    const prices = [100, 50, 200, 150];
+    const discounts = [20, 15, 10, 25];
+ 
+    const items = document.querySelectorAll('.cart-item');
+ 
+    items.forEach((item, index) => {
+      const originalPrice = prices[index];
+      const discountPercent = discounts[index];    
+      const discountAmount = (originalPrice * discountPercent / 100).toFixed(2);
+      const newPrice = (originalPrice - discountAmount).toFixed(2);
+ 
+      item.querySelector('.price-section').innerHTML = `  
+        <p class="new-price">$${newPrice}</p>
+        <p class="old-price">$${originalPrice}</p>
+        <p class="discount-percent">${discountPercent}% OFF</p>
+      `;
+    });
+  </script>
+           
+</body>
+</html>
