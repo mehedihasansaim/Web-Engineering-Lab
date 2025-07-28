@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2nd Largest GCD Finder</title>
+</head>
+<body>
+    <h1>GCD Calculation by Saim</h1>
+    <h2>Enter up to 6 integers:</h2>
+    <form method="post">
+        <input type="text" name="numbers" placeholder="e.g. 12,15,18,30">
+        <input type="submit" value="Find 2nd Largest GCD">
+    </form>
+
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $input = array_map('intval', explode(',', $_POST["numbers"]));
+        $n = count($input);
+
+
+        if ($n < 2 || $n > 6) {
+            echo "<p style='color:red;'>Enter between 2 to 6 numbers.</p>";
+            return;
+        }
+
+
+        function gcd($a, $b) {
+            if ($b == 0) {
+                return $a;
+            } else {
+                return gcd($b, $a % $b);
+            }
+        }
+
+
+        $gcds = [];
+        for ($i = 0; $i < $n; $i++)
+            for ($j = $i + 1; $j < $n; $j++)
+                $gcds[] = gcd($input[$i], $input[$j]);
+
+
+        $unique = array_unique($gcds);
+        rsort($unique);
+
+
+        echo "<p><strong>Input Array:</strong> [" . implode(", ", $input) . "]</p>";
+        echo "<p><strong>All Unique GCDs:</strong> [" . implode(", ", $unique) . "]</p>";
+        echo "<p><strong>" . (isset($unique[1])
+            ? "2nd Largest GCD: $unique[1]"
+            : "Not enough unique GCDs to determine 2nd largest.") . "</strong></p>";
+    }
+    ?>
+</body>
+</html>
